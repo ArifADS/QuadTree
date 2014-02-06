@@ -9,6 +9,10 @@
 #include <iostream>
 #include "QuadTree.h"
 
+
+
+/* Ya que no consegui como compilar por entrada estandar de bla bla bla bla
+ * defino "cin" como "fin" y asi cuando tu lo metas por istd no te de error y te funcione igual, ves? y ya está.*/
 #ifdef DEBUG
     #include <fstream>
     #define cin fin
@@ -21,8 +25,7 @@
 
 List<Color>& poListaDeString(string myString);
 
-/* Ya que no consegui como compilar por entrada estandar de bla bla bla bla
- * defino "cin" como "fin" y asi cuando tu lo metas por istd no te de error y te funcione igual, ves? y ya está.*/
+
 
 int main(int argc, char * argv[])
 {
@@ -52,37 +55,7 @@ int main(int argc, char * argv[])
     
     return 0;
     
-    
-    //ppeeefpffeefe
-    int i = 0;
-    prepo.addInfoAtPos(Gris, i++);
-    prepo.addInfoAtPos(Gris, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    prepo.addInfoAtPos(Negro, i++);
-    prepo.addInfoAtPos(Gris, i++);
-    prepo.addInfoAtPos(Negro, i++);
-    prepo.addInfoAtPos(Negro, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    prepo.addInfoAtPos(Negro, i++);
-    prepo.addInfoAtPos(Blanco, i++);
-    
-    i =0;
-    prepo2.addInfoAtPos(Gris, i++);
-    prepo2.addInfoAtPos(Blanco, i++);
-    prepo2.addInfoAtPos(Negro, i++);
-    prepo2.addInfoAtPos(Blanco, i++);
-    prepo2.addInfoAtPos(Gris, i++);
-    prepo2.addInfoAtPos(Blanco, i++);
-    prepo2.addInfoAtPos(Blanco, i++);
-    prepo2.addInfoAtPos(Negro, i++);
-    prepo2.addInfoAtPos(Blanco, i++);
-    
-    QuadTree Qt(prepo),qtnulo,Qt2(prepo2);
-    
-    
+    /*
     if  (Qt.esNulo()){
         cout << "Es nulo\n";
     }
@@ -96,7 +69,7 @@ int main(int argc, char * argv[])
     Qt.preorden();
     Qt2.preorden();
     
-    
+    */
     
     
     
