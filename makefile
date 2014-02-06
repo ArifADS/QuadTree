@@ -1,3 +1,5 @@
 all:
-	g++ main.cpp -o exeMain
-	./exeMain < entrada.in
+	@clear
+	@g++ main.cpp -o exeMain
+	@./exeMain < entrada.in
+	@rm exeMain

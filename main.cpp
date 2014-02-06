@@ -49,6 +49,7 @@ int main(int argc, char * argv[])
         
         qt1.preorden();
         qt2.preorden();
+        if(i<nCasosPrueba-1) cout<<endl;
         
 
     }
