@@ -29,7 +29,7 @@ void recPrint(int i);
 
 int main2()
 {
-    int j = 5000;
+    int j = 100000;
     cout<<j<<endl;
     for (int i = 1; i<=j*2; i++)
         printMuchosQt();
@@ -37,12 +37,11 @@ int main2()
 }
 
 int main(int argc, char * argv[])
-{
+{cout <<"Debug mode: "<<  DEBUG << endl;
     //main2(); return 0;
-    cout <<"Debug mode: "<<  DEBUG << endl;
-    int nCasosPrueba;
+
+    int nCasosPrueba,npxT=0,npx;
     string line1,line2;
-    
     List<Color> prepo1,prepo2;
     QuadTree qt1,qt2;
     
@@ -64,8 +63,16 @@ int main(int argc, char * argv[])
         qt1.crear(prepo1);
         qt2.crear(prepo2);
         
-        cout << "Hay "<< qt1.unionQt(qt2).pxNegros() << " pixels negros."<<endl;
+        npx = qt1.unionQt(qt2).pxNegros();
+        
+        npxT += npx;
+        
+        cout << "Hay "<< npx << " pixels negros."<<endl;
     }
+    cout << "De "        << nCasosPrueba << " QuadTrees" << endl;
+    cout << "Hay "       << npxT << " pixeles negros"    << endl;
+    cout << "Promedio: " << npxT/nCasosPrueba            << endl;
+    
     
     return 0;
 }
