@@ -42,11 +42,11 @@ public:
         preorden.deleteAtPos(0);
         
         for (int i = 0; i<4; i++)
-        {
             this->hijo[i] = reconstruir(preorden);
-        }
         
     }
+    
+    
     
     
     bool esNulo(){
@@ -68,32 +68,74 @@ public:
     
     int numeroDeNegros()
     {
-        int nNegros = 0;
-        for (int i = 0; i<4; i++)
-        {
-            if (this->hijo[i]->nodoColor == Negro)
-                nNegros +=4;
-            
-            
-            if (this->hijo[i]->nodoColor == Gris)
-            {
-                for (int j = 0; j<4; j++)
-                {
-                    if (this->hijo[i]->hijo[j]->nodoColor == Negro)
-                        nNegros++;
-                }
-            }
-            
-        }
-        
-        return nNegros;
+        return cuantosNegros(this,64);
         
     }
     
-
+    
+    
+    
     
     
 private:
+    
+    int cuantosNegros(QuadTree* qt,int i)
+    {
+        int nNegros = 0;
+        if (qt->nodoColor == Negro)
+            nNegros+= i;
+        
+        else if (qt->nodoColor == Gris)
+        {
+            for (int j=0; j<4; j++) {
+                nNegros += cuantosNegros(qt->hijo[j], i/4);
+            }
+        }
+        return nNegros;
+    }
+    
+    QuadTree& unionQt(const QuadTree& qt2)
+    {
+        return *unionDeQuadTree(this, &qt2);
+    }
+    
+    QuadTree* unionDeQuadTree(const QuadTree* qt1,const QuadTree* qt2)
+    {
+        QuadTree* qt3 = new QuadTree;
+        
+        if (qt1->nodoColor == Negro || qt2->nodoColor == Negro)
+            qt3->nodoColor = Negro;
+        
+        else if (qt1->nodoColor == Blanco && qt2->nodoColor == Blanco)
+            qt3->nodoColor = Blanco;
+        
+        else if (qt1->nodoColor == Blanco && qt2->nodoColor == Gris)
+        {
+            qt3->nodoColor = Gris;
+            for (int i = 0; i<4; i++) {
+                qt3->hijo[i] = qt2->hijo[i]; // no es copia formal sino de apuntadores :(
+            }
+        }
+        
+        else if (qt1->nodoColor == Gris && qt2->nodoColor == Blanco)
+        {
+            qt3->nodoColor = Gris;
+            for (int i = 0; i<4; i++) {
+                qt3->hijo[i] = qt1->hijo[i]; // no es copia formal sino de apuntadores :(
+            }
+        }
+        
+        else
+        {
+            qt3->nodoColor = Gris;
+            for (int i = 0; i<4; i++)
+            {
+                qt3->hijo[i] = unionDeQuadTree(qt1->hijo[i], qt2->hijo[i]);
+            }
+        }
+        
+        return qt3;
+    }
     
     
     QuadTree* reconstruir(List<Color> &preorden)
@@ -124,6 +166,8 @@ private:
     
     QuadTree(Color myColor){
         this->nodoColor = myColor;
+        for (int i = 0; i<4; i++)
+            this->hijo[i] = NULL;
     }
     
     void recorridoPreorden(QuadTree* qt)
@@ -140,11 +184,6 @@ private:
             
             
         }
-    }
-    
-    int negros(QuadTree * qt){
-        
-        return qt->nodoColor == Negro;
     }
     
 };

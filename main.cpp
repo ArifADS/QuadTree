@@ -47,32 +47,20 @@ int main(int argc, char * argv[])
         
         QuadTree qt1(poListaDeString(line1)),qt2(poListaDeString(line2));
         
-        qt1.preorden();
-        qt2.preorden();
-        if(i<nCasosPrueba-1) cout<<endl;
+        
+        //qt1.preorden();
+        
+        //qt2.preorden();
+        
+        //qt1.unionQt(qt2).preorden();
+        
+        cout << "Hay "<< qt1.unionQt(qt2).numeroDeNegros() << " pixels negros.";
+        
+        
+        cout<<endl;
         
 
     }
-    
-    return 0;
-    
-    /*
-    if  (Qt.esNulo()){
-        cout << "Es nulo\n";
-    }
-    else
-        cout << "No es nulo\n";
-    
-    
-    cout << "Numero de negros Qt: " <<    Qt.numeroDeNegros()*4 << endl;
-    cout << "Numero de negros Qt2: " <<  Qt2.numeroDeNegros()*4 << endl;
-    
-    Qt.preorden();
-    Qt2.preorden();
-    
-    */
-    
-    
     
     return 0;
 }
