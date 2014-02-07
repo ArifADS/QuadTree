@@ -24,16 +24,27 @@
 
 
 List<Color>& poListaDeString(string myString);
+void printMuchosQt();
+void recPrint(int i);
 
-
+int main2()
+{
+    int j = 5000;
+    cout<<j<<endl;
+    for (int i = 1; i<=j*2; i++)
+        printMuchosQt();
+    return 0;
+}
 
 int main(int argc, char * argv[])
 {
+    //main2(); return 0;
     cout <<"Debug mode: "<<  DEBUG << endl;
     int nCasosPrueba;
     string line1,line2;
     
-    List<Color> prepo,prepo2;
+    List<Color> prepo1,prepo2;
+    QuadTree qt1,qt2;
     
     
     cin >> nCasosPrueba;
@@ -41,28 +52,61 @@ int main(int argc, char * argv[])
     
     for (int i = 0; i<nCasosPrueba; i++)
     {
+        //toma las lineas del archivo/stream.
         getline(cin, line1);
-        
         getline(cin, line2);
         
-        QuadTree qt1(poListaDeString(line1)),qt2(poListaDeString(line2));
+        //convierte de string a List<Color>.
+        prepo1 = poListaDeString(line1);
+        prepo2 = poListaDeString(line2);
         
+        //crea los QuadTree a partir de una Lista de color.
+        qt1.crear(prepo1);
+        qt2.crear(prepo2);
         
-        //qt1.preorden();
-        
-        //qt2.preorden();
-        
-        //qt1.unionQt(qt2).preorden();
-        
-        cout << "Hay "<< qt1.unionQt(qt2).numeroDeNegros() << " pixels negros.";
-        
-        
-        cout<<endl;
-        
-
+        cout << "Hay "<< qt1.unionQt(qt2).pxNegros() << " pixels negros."<<endl;
     }
     
     return 0;
+}
+
+
+void recPrint(int i)
+{
+    srand ((unsigned int)time(NULL)*rand());
+    int j = rand()%(3-i);
+    
+    switch (j) {
+        case 0:
+            cout<< 'f';
+            break;
+        case 1:
+            cout<< 'e';
+            break;
+        case 2:
+        case 3:
+            cout<< 'p';
+            recPrint(i+1);
+            recPrint(i+1);
+            recPrint(i+1);
+            recPrint(i+1);
+            break;
+            
+        default:
+            cout << endl<< "WTF? "<<j<<endl;
+            break;
+    }
+}
+
+void printMuchosQt()
+{
+    int i = -1;
+    cout<<'p';
+    recPrint(i);
+    recPrint(i);
+    recPrint(i);
+    recPrint(i);
+    cout<< endl;
 }
 
 List<Color>& poListaDeString(string myString){

@@ -154,7 +154,7 @@ class List
 			return (int) NULL;
 		}
 
-		T getInfoWithPos(int pos){
+		T& getInfoWithPos(int pos){
 			Node<T>* nodeAux;
 			//if (pos < 0 || pos>=getLenght()) return NULL;
 			if (pos == 0){
@@ -210,9 +210,9 @@ class List
 		}
     
     
-        T operator[](int i)
+        T& operator[](int i)
         {
-            return this->getInfoWithPos(i);
+            return this->getInfoWithPos(i);;
         }
     
     

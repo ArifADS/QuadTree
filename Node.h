@@ -15,7 +15,7 @@ class Node{
 			prev = NULL;
 		}
 
-		T getInfo(){
+		T& getInfo(){
 			return info;
 		}
 

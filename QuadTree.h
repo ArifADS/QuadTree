@@ -31,55 +31,78 @@ class QuadTree
     
     
 public:
+    //Constructores
     QuadTree()
     {
         nodoColor = (Color) 0;
+        for (int i = 0; i<4; i++)
+            this->hijo[i] = NULL;
     }
     
-    QuadTree(List<Color> &preorden)
+    //Metodos
+    
+    QuadTree& nulo()
+    {
+        QuadTree();
+        return *this;
+    }
+    
+    bool esNulo()
+    {
+        return nodoColor == 0;
+        
+    }
+    
+    QuadTree& crear(List<Color> &preorden)
     {
         this->nodoColor = preorden[0];
         preorden.deleteAtPos(0);
         
         for (int i = 0; i<4; i++)
             this->hijo[i] = reconstruir(preorden);
-        
+        return *this;
     }
     
-    
-    
-    
-    bool esNulo(){
-        return nodoColor == 0;
-        
-    }
-    
-    Color color(){
+    Color color()
+    {
         return nodoColor;
     }
     
-    //QuadTree& unionQT;
-    
-    void preorden(){
-        cout<< "PREORDEN:\t";
-        recorridoPreorden(this);
-        cout<< endl;
+    QuadTree& unionQt(const QuadTree& qt2)
+    {
+        return *unionDeQuadTree(this, &qt2);
     }
     
-    int numeroDeNegros()
+    int pxNegros()
     {
         return cuantosNegros(this,64);
         
     }
     
     
-    
+    //TEST METHODS
+    void preorden(){
+        cout<< "PREORDEN:\t";
+        recorridoPreorden(this);
+        cout<< endl;
+    }
+    QuadTree(List<Color> &preorden)
+    {
+        crear(preorden);
+    }
     
     
     
 private:
     
-    int cuantosNegros(QuadTree* qt,int i)
+    QuadTree(Color myColor)
+    {
+        this->nodoColor = myColor;
+        for (int i = 0; i<4; i++)
+            this->hijo[i] = NULL;
+    }
+    
+    static int cuantosNegros(QuadTree* qt,int i)
     {
         int nNegros = 0;
         if (qt->nodoColor == Negro)
@@ -94,12 +117,7 @@ private:
         return nNegros;
     }
     
-    QuadTree& unionQt(const QuadTree& qt2)
-    {
-        return *unionDeQuadTree(this, &qt2);
-    }
-    
-    QuadTree* unionDeQuadTree(const QuadTree* qt1,const QuadTree* qt2)
+    static QuadTree* unionDeQuadTree(const QuadTree* qt1,const QuadTree* qt2)
     {
         QuadTree* qt3 = new QuadTree;
         
@@ -137,8 +155,7 @@ private:
         return qt3;
     }
     
-    
-    QuadTree* reconstruir(List<Color> &preorden)
+    static QuadTree* reconstruir(List<Color> &preorden)
     {//ppeeefpffeefe
         
         
@@ -163,14 +180,7 @@ private:
         return auxQt;
     }
     
-    
-    QuadTree(Color myColor){
-        this->nodoColor = myColor;
-        for (int i = 0; i<4; i++)
-            this->hijo[i] = NULL;
-    }
-    
-    void recorridoPreorden(QuadTree* qt)
+    static void recorridoPreorden(QuadTree* qt)
     {
         if (qt != NULL)
         {
@@ -187,7 +197,4 @@ private:
     }
     
 };
-
-
-
 #endif /* defined(__QuadTree__QuadTree__) */
