@@ -27,17 +27,11 @@ List<Color>& poListaDeString(string myString);
 void printMuchosQt();
 void recPrint(int i);
 
-int main2()
-{
-    int j = 100000;
-    cout<<j<<endl;
-    for (int i = 1; i<=j*2; i++)
-        printMuchosQt();
-    return 0;
-}
+
 
 int main(int argc, char * argv[])
-{cout <<"Debug mode: "<<  DEBUG << endl;
+{
+    //cout <<"Debug mode: "<<  DEBUG << endl;
     //main2(); return 0;
 
     int nCasosPrueba,npxT=0,npx;
@@ -69,11 +63,24 @@ int main(int argc, char * argv[])
         
         cout << "Hay "<< npx << " pixels negros."<<endl;
     }
-    cout << "De "        << nCasosPrueba << " QuadTrees" << endl;
-    cout << "Hay "       << npxT << " pixeles negros"    << endl;
-    cout << "Promedio: " << npxT/nCasosPrueba            << endl;
     
     
+    //cout de prueba
+    //cout << "De "        << nCasosPrueba << " QuadTrees" << endl;
+    //cout << "Hay "       << npxT << " pixeles negros"    << endl;
+    //cout << "Promedio: " << npxT/nCasosPrueba            << endl;
+    
+    
+    return 0;
+}
+
+// funciones para testear, ignorar
+int main2()
+{
+    int j = 100000;
+    cout<<j<<endl;
+    for (int i = 1; i<=j*2; i++)
+        printMuchosQt();
     return 0;
 }
 
